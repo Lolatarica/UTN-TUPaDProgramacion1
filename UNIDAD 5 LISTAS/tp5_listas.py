@@ -222,25 +222,87 @@ for i in range(num_estudiantes):
 
 #EJERCICIO 9
 
-tateti = [
+tablero = [
     ["-", "-", "-"],
     ["-", "-", "-"],
     ["-", "-", "-"]
     ]
 
-print ("Tablero:")
-for fila in tateti:
+for fila in tablero:
     for celda in fila:
-        print(celda, end="")
-    print ()
-print()
+        print (celda, end= " ")
+    print()
 
-jugador_uno = "x"
-jugador_dos = "o"
-movimiento = 0
+jugador = "x"
+jugadas = 0
 
-while True:
-    print (f"Turno de {jugador_uno}")
-    while True: 
-        
+while jugadas < 9:
+    print(f"Turno del jugador {jugador}")
+    fila = int(input("ingrese la fila seleccionada:(0-2) "))
+    columna = int(input("ingrese la columna seleccionada:(0-2) "))
 
+    if fila<0 or fila>2 or columna<0 or columna>2:
+        print ("Fuera de rango")
+        continue
+    
+    if tablero[fila][columna] == "-":
+        tablero[fila][columna] = jugador
+        jugadas += 1
+    else:
+        print ("Esa casilla esta ocupada.")
+    
+    for fila in tablero:
+        for celda in fila:
+            print (celda, end= " ")
+        print()
+
+    if jugador == "x":
+        jugador = "o"
+    else:
+        jugador = "x"
+
+#EJERCICIO 10
+
+ventas = [
+    [12,3,23,43,22,12,2],
+    [2,3,0,1,6,2,2],
+    [34,33,27,22,23,28,33],
+    [12,3,23,43,22,12,2]
+]
+
+print ("Total de productos vendidos: ")
+totales_prods = 0
+for i in range(4):
+    total = 0
+    for j in range (7):
+        total += ventas[i][j]
+    totales_prods.append(total)
+    print(f"Producto {i+1}: {total}")
+
+
+print("Ventas totales por día:")
+totales_dias = []
+for j in range(7):
+    total_dia = 0
+    for i in range(4):
+        total_dia += ventas[i][j]
+    totales_dias.append(total_dia)
+    print(f"Día {j+1}: {total_dia}")
+
+mayor_ventas = totales_dias[0]
+dia_max = 1
+for j in range(1, 7):
+    if totales_dias[j] > mayor_ventas:
+        mayor_ventas = totales_dias[j]
+        dia_max = j+1
+
+print(f"El día con mayores ventas fue el Día {dia_max} ({mayor_ventas} ventas).")
+
+mayor_prod = totales_prods[0]
+prod_max = 1
+for i in range(1, 4):
+    if totales_prods[i] > mayor_prod:
+        mayor_prod = totales_prods[i]
+        prod_max = i+1
+
+print(f"El producto más vendido fue el Producto {prod_max} ({mayor_prod} ventas).")
