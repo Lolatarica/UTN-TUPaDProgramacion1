@@ -1,0 +1,4 @@
+cartera,2500,10
+llavero,800,25
+billetera,3000,15
+coca,1000,10
